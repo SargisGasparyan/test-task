@@ -36,6 +36,45 @@ const CHART_CONFIG = {
 
 const DEFAULT_BASE_PRICE = 15000;
 
+const ReferenceLineLabel = ({
+  viewBox,
+  value,
+}: {
+  viewBox?: { x: number; y: number; width?: number; height?: number };
+  value?: string;
+}) => {
+  if (!viewBox || !value) return null;
+
+  const chartWidth = viewBox.width || 0;
+  const labelWidth = value.length * 7 + 16;
+  const labelX = chartWidth - labelWidth - 10;
+  const labelY = (viewBox.y || 0) - 12;
+
+  return (
+    <g>
+      <rect
+        x={labelX}
+        y={labelY}
+        width={labelWidth}
+        height={24}
+        fill="hsl(var(--success))"
+        rx={6}
+        className="shadow-lg"
+      />
+      <text
+        x={labelX + 8}
+        y={(viewBox.y || 0) + 4}
+        fill="white"
+        fontSize={12}
+        fontWeight={500}
+        className="font-medium"
+      >
+        {value}
+      </text>
+    </g>
+  );
+};
+
 const CustomDot = ({
   cx,
   cy,
@@ -206,7 +245,7 @@ export const TradingChart = () => {
       <ResponsiveContainer width="100%" height={300}>
         <LineChart
           data={data}
-          margin={{ top: 20, right: 60, left: 0, bottom: 0 }}
+          margin={{ top: 20, right: 80, left: 0, bottom: 0 }}
           aria-label="Price chart over time"
         >
           <XAxis
@@ -258,6 +297,7 @@ export const TradingChart = () => {
             stroke="hsl(var(--success))"
             strokeDasharray="5 5"
             strokeWidth={1}
+            label={<ReferenceLineLabel value={currentLabel} />}
           />
           <Line
             type="monotone"
@@ -269,13 +309,6 @@ export const TradingChart = () => {
           />
         </LineChart>
       </ResponsiveContainer>
-
-      <div
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-success px-3 py-1.5 rounded-md text-white text-sm font-medium whitespace-nowrap z-10 shadow-lg"
-        aria-label={`Current price: ${currentLabel}`}
-      >
-        {currentLabel}
-      </div>
 
       <div
         className="flex items-center justify-center gap-4 mt-4"
