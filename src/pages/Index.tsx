@@ -11,49 +11,53 @@ import { MoreVertical, X } from "lucide-react";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background pb-20">
-      {/* Header */}
-      <header className="flex items-center justify-between px-4 py-3 border-b border-border">
+      <header className="flex items-center justify-between px-4 py-3 border-b border-border" role="banner">
         <div className="flex items-center gap-2">
-          <MoreVertical className="w-5 h-5 text-muted-foreground" />
-          <span className="text-sm font-medium text-foreground">Mini App</span>
+          <button
+            type="button"
+            className="p-1"
+            aria-label="Open menu"
+          >
+            <MoreVertical className="w-5 h-5 text-muted-foreground" aria-hidden="true" />
+          </button>
+          <h1 className="text-sm font-medium text-foreground">Mini App</h1>
         </div>
-        <button className="p-1">
-          <X className="w-5 h-5 text-muted-foreground" />
+        <button
+          type="button"
+          className="p-1"
+          aria-label="Close application"
+        >
+          <X className="w-5 h-5 text-muted-foreground" aria-hidden="true" />
         </button>
       </header>
 
-      {/* Trading Pair and Wallet */}
-      <div className="flex items-center justify-between px-4 py-4">
-        <TradingPair />
-        <WalletConnect />
-      </div>
+      <main className="pb-20">
+        <section className="flex items-center justify-between px-4 py-4" aria-label="Trading pair and wallet">
+          <TradingPair />
+          <WalletConnect />
+        </section>
 
-      {/* Price Display */}
-      <div className="px-4">
-        <PriceDisplay />
-      </div>
+        <section className="px-4" aria-label="Price information">
+          <PriceDisplay />
+        </section>
 
-      {/* Chart */}
-      <div className="px-4 mb-6">
-        <TradingChart />
-      </div>
+        <section className="px-4 mb-6" aria-label="Trading chart">
+          <TradingChart />
+        </section>
 
-      {/* Activity Feed */}
-      <div className="px-4">
-        <ActivityFeed />
-      </div>
+        <section className="px-4" aria-label="Recent trading activity">
+          <ActivityFeed />
+        </section>
 
-      {/* Position Details */}
-      <div className="px-4">
-        <PositionDetails />
-      </div>
+        <section className="px-4" aria-label="Current position details">
+          <PositionDetails />
+        </section>
 
-      {/* Trading Buttons */}
-      <div className="px-4">
-        <TradingButtons />
-      </div>
+        <section className="px-4" aria-label="Trading actions">
+          <TradingButtons />
+        </section>
+      </main>
 
-      {/* Bottom Navigation */}
       <BottomNavigation />
     </div>
   );
