@@ -198,7 +198,11 @@ export const TradingChart = () => {
   }, []);
 
   return (
-    <figure className="relative" role="img" aria-label="Trading price chart">
+    <figure
+      className="relative overflow-hidden"
+      role="img"
+      aria-label="Trading price chart"
+    >
       <ResponsiveContainer width="100%" height={300}>
         <LineChart
           data={data}
@@ -267,7 +271,7 @@ export const TradingChart = () => {
       </ResponsiveContainer>
 
       <div
-        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 bg-success px-3 py-1.5 rounded-md text-white text-sm font-medium whitespace-nowrap z-10 shadow-lg"
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-success px-3 py-1.5 rounded-md text-white text-sm font-medium whitespace-nowrap z-10 shadow-lg"
         aria-label={`Current price: ${currentLabel}`}
       >
         {currentLabel}

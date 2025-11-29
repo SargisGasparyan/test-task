@@ -10,7 +10,7 @@ import { MoreVertical, X } from "lucide-react";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background pb-20">
+    <div className="min-h-screen bg-background pb-20 overflow-x-hidden">
       <header className="flex items-center justify-between px-4 py-3 border-b border-border" role="banner">
         <div className="flex items-center gap-2">
           <button
